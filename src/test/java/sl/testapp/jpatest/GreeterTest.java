@@ -12,14 +12,21 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import sl.testapp.jpatest.model.Member;
+
 @RunWith(Arquillian.class)
 public class GreeterTest {
 
 	@Deployment
 	public static JavaArchive createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class).addClasses(Greeter.class, PhraseBuilder.class)
+		JavaArchive jar = ShrinkWrap.create(JavaArchive.class)
+				.addClasses(Greeter.class, PhraseBuilder.class, Member.class)
 				.addAsManifestResource(EmptyAsset.INSTANCE,
-				"beans.xml");
+						"beans.xml")
+				.addAsManifestResource("META-INF/persistence.xml").addAsResource("import.sql")
+				.addAsManifestResource("hibernate5-quickstart-ds.xml");
+		System.out.println(jar.toString(true));
+		return jar;
 	}
 
 	@Inject

@@ -16,22 +16,22 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-    <repositories>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-            <id>jboss-enterprise-maven-repository</id>
-            <name>JBoss Enterprise Maven Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
+	<repositories>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+			<id>jboss-enterprise-maven-repository</id>
+			<name>JBoss Enterprise Maven Repository</name>
+			<url>https://maven.repository.redhat.com/ga/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
@@ -110,6 +110,16 @@
 			<groupId>org.wildfly.arquillian</groupId>
 			<artifactId>wildfly-arquillian-container-remote</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
