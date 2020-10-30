@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Class-Path: lib/spring-data-jpa-2.1.16.RELEASE.jar lib/spring-data-com
+ mons-2.1.16.RELEASE.jar lib/spring-orm-5.1.14.RELEASE.jar lib/spring-
+ jdbc-5.1.14.RELEASE.jar lib/spring-context-5.1.14.RELEASE.jar lib/spr
+ ing-expression-5.1.14.RELEASE.jar lib/spring-aop-5.1.14.RELEASE.jar l
+ ib/spring-tx-5.1.14.RELEASE.jar lib/spring-beans-5.1.14.RELEASE.jar l
+ ib/spring-core-5.1.14.RELEASE.jar lib/spring-jcl-5.1.14.RELEASE.jar l
+ ib/aspectjrt-1.9.5.jar lib/slf4j-api-1.7.22.redhat-2.jar
+Build-Jdk-Spec: 1.8
+Created-By: Maven WAR Plugin 3.3.1
+
