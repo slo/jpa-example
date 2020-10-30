@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.ScopeType;
@@ -34,14 +33,17 @@ public class GreeterTest {
 				.withTransitivity()
 				.asFile();
 
-		JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(Greeter.class,
-				PhraseBuilder.class, Member.class, MemberRepository.class, MemberDAO.class, RepositoryProducer.class);
+		// JavaArchive jar = ShrinkWrap.create(JavaArchive.class,
+		// "test.jar").addClasses(Greeter.class,
+		// PhraseBuilder.class, Member.class, MemberRepository.class, MemberDAO.class,
+		// RepositoryProducer.class);
 
 		WebArchive war = ShrinkWrap.create(WebArchive.class)
 				.addClasses(Greeter.class, PhraseBuilder.class, Member.class, MemberRepository.class, MemberDAO.class)
-				.addAsWebInfResource("beans.xml").addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+				.addAsWebInfResource("beans.xml").addAsResource("META-INF/persistence.xml")
 				.addAsManifestResource("import.sql").addAsManifestResource("hibernate5-quickstart-ds.xml")
-				.addAsLibrary(jar).addAsManifestResource("MANIFEST.MF").addAsLibraries(files);
+				// .addAsLibrary(jar)
+				.addAsManifestResource("MANIFEST.MF").addAsLibraries(files);
 		System.out.println(war.toString(true));
 		return war;
 	}
