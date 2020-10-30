@@ -33,31 +33,16 @@ public class GreeterTest {
 				.withTransitivity()
 				.asFile();
 
-		// JavaArchive jar = ShrinkWrap.create(JavaArchive.class,
-		// "test.jar").addClasses(Greeter.class,
-		// PhraseBuilder.class, Member.class, MemberRepository.class, MemberDAO.class,
-		// RepositoryProducer.class);
-
 		WebArchive war = ShrinkWrap.create(WebArchive.class)
-				.addClasses(Greeter.class, PhraseBuilder.class, Member.class, MemberRepository.class, MemberDAO.class)
+				.addClasses(Greeter.class, PhraseBuilder.class, Member.class, MemberRepository.class, MemberDAO.class,
+						RepositoryProducer.class)
 				.addAsWebInfResource("beans.xml").addAsResource("META-INF/persistence.xml")
-				.addAsManifestResource("import.sql").addAsManifestResource("hibernate5-quickstart-ds.xml")
+				.addAsResource("import.sql").addAsManifestResource("hibernate5-quickstart-ds.xml")
 				// .addAsLibrary(jar)
 				.addAsManifestResource("MANIFEST.MF").addAsLibraries(files);
 		System.out.println(war.toString(true));
 		return war;
 	}
-
-//	public static WebArchive createDeployment() {
-//		WebArchive war = ShrinkWrap.create(WebArchive.class)
-//				.addClasses(Greeter.class, PhraseBuilder.class, Member.class, MemberRepository.class, MemberDAO.class)
-//				.addAsWebInfResource("beans.xml")
-//				.addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-//				.addAsManifestResource("import.sql")
-//				.addAsManifestResource("hibernate5-quickstart-ds.xml");
-//		System.out.println(war.toString(true));
-//		return war;
-//	}
 
 	@Inject
 	Greeter greeter;
@@ -77,6 +62,12 @@ public class GreeterTest {
 		List<Member> result = memberDao.findAll();
 		assertEquals(3, result.size());
 
+	}
+
+	@Test
+	public void should_find_by_name() {
+		List<Member> result = memberDao.findByName("johndoe@example.com");
+		assertEquals(1, result.size());
 	}
 
 }

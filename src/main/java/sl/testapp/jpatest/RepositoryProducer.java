@@ -1,25 +1,27 @@
 package sl.testapp.jpatest;
 
-import javax.ejb.Singleton;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Produces;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-@Singleton
+@ApplicationScoped
 public class RepositoryProducer {
 
-//	@Produces
-//	@Dependent
-//	@PersistenceContext(unitName = "primary")
-//	private EntityManagerFactory emf;
-//
-//	@Produces
-//	@ApplicationScoped
-//	public EntityManager getEntityManager() {
-//		return emf.createEntityManager();
-//	}
-//
-//	@Produces
-//	@ApplicationScoped
-//	public MemberRepository getMemberRepository() {
-//		return new JpaRepositoryFactory(getEntityManager()).getRepository(MemberRepository.class);
-//	}
+	@Produces
+	@Dependent
+	@PersistenceContext
+	private EntityManager em;
 
+
+	/*
+	 * @Produces
+	 * 
+	 * @ApplicationScoped public MemberRepository getMemberRepository() { return new
+	 * JpaRepositoryFactory(em).getRepository(MemberRepository.class); }
+	 * 
+	 * public void close(@Disposes EntityManager entityManager) {
+	 * entityManager.close(); }
+	 */
 }

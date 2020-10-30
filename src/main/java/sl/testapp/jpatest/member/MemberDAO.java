@@ -2,13 +2,20 @@ package sl.testapp.jpatest.member;
 
 import java.util.List;
 
-//@Transactional
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+
+@Transactional
 public class MemberDAO {
 
-	// @Inject
+	@Inject
 	private MemberRepository memberRepository;
 
 	public List<Member> findAll() {
-		return null;// memberRepository.findAll();
+		return memberRepository.findAll();
+	}
+
+	public List<Member> findByName(String name) {
+		return memberRepository.findByName(name);
 	}
 }
