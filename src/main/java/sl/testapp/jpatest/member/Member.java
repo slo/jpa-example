@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sl.testapp.jpatest.model;
+package sl.testapp.jpatest.member;
 
 import java.io.Serializable;
 
