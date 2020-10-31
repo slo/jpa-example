@@ -13,7 +13,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.ScopeType;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,7 +21,7 @@ import sl.testapp.jpatest.member.MemberDAO;
 import sl.testapp.jpatest.member.MemberRepository;
 
 @RunWith(Arquillian.class)
-public class GreeterTest {
+public class MemberServicesTest {
 
 
 	@Deployment
@@ -34,39 +33,21 @@ public class GreeterTest {
 				.asFile();
 
 		WebArchive war = ShrinkWrap.create(WebArchive.class)
-				.addClasses(Greeter.class, PhraseBuilder.class, Member.class, MemberRepository.class, MemberDAO.class,
+				.addClasses(Member.class, MemberRepository.class, MemberDAO.class,
 						RepositoryProducer.class)
 				.addAsWebInfResource("beans.xml").addAsResource("META-INF/persistence.xml")
 				.addAsResource("import.sql").addAsManifestResource("hibernate5-quickstart-ds.xml")
-				// .addAsLibrary(jar)
 				.addAsManifestResource("MANIFEST.MF").addAsLibraries(files);
 		System.out.println(war.toString(true));
 		return war;
 	}
 
 	@Inject
-	Greeter greeter;
-
-	@Inject
 	MemberDAO memberDao;
 
 	@Test
-	public void should_create_greeting() {
-		assertEquals("Hello, Earthling!", greeter.createGreeting("Earthling"));
-		greeter.greet(System.out, "Earthling!");
-	}
-
-	@Test
-	@Ignore
-	public void should_fetch_all_data() {
-		List<Member> result = memberDao.findAll();
-		assertEquals(3, result.size());
-
-	}
-
-	@Test
 	public void should_find_by_name() {
-		List<Member> result = memberDao.findByName("johndoe@example.com");
+		List<Member> result = memberDao.findByEmail("johndoe@example.com");
 		assertEquals(1, result.size());
 	}
 

@@ -13,15 +13,4 @@ public class RepositoryProducer {
 	@Dependent
 	@PersistenceContext
 	private EntityManager em;
-
-
-	/*
-	 * @Produces
-	 * 
-	 * @ApplicationScoped public MemberRepository getMemberRepository() { return new
-	 * JpaRepositoryFactory(em).getRepository(MemberRepository.class); }
-	 * 
-	 * public void close(@Disposes EntityManager entityManager) {
-	 * entityManager.close(); }
-	 */
 }

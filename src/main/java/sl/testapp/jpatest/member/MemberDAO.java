@@ -3,9 +3,8 @@ package sl.testapp.jpatest.member;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
-@Transactional
+//@Transactional
 public class MemberDAO {
 
 	@Inject
@@ -15,7 +14,7 @@ public class MemberDAO {
 		return memberRepository.findAll();
 	}
 
-	public List<Member> findByName(String name) {
-		return memberRepository.findByName(name);
+	public List<Member> findByEmail(String email) {
+		return memberRepository.findByEmail(email);
 	}
 }
