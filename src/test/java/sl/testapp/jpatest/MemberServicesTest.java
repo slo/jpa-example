@@ -46,7 +46,7 @@ public class MemberServicesTest {
 	MemberDAO memberDao;
 
 	@Test
-	public void should_find_by_name() {
+	public void should_find_by_email() {
 		List<Member> result = memberDao.findByEmail("johndoe@example.com");
 		assertEquals(1, result.size());
 	}
