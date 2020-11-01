@@ -2,9 +2,11 @@ package sl.testapp.jpatest.member;
 
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 //@Transactional
+@ApplicationScoped
 public class MemberDAO {
 
 	@Inject
