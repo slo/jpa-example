@@ -6,7 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-//@Transactional
+@Transactional
 @ApplicationScoped
 public class MemberDAO {
 
