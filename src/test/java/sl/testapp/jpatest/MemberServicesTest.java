@@ -29,7 +29,7 @@ public class MemberServicesTest {
 		File[] files = Maven.resolver().loadPomFromFile("pom.xml").importDependencies(ScopeType.TEST, ScopeType.COMPILE)
 				.resolve().withTransitivity().asFile();
 
-		WebArchive war = ShrinkWrap.create(WebArchive.class)
+		WebArchive war = ShrinkWrap.create(WebArchive.class, "test.war")
 				.addClasses(Member.class, MemberRepository.class, MemberDAO.class, RepositoryProducer.class)
 				.addAsWebInfResource("beans.xml").addAsResource("META-INF/persistence.xml").addAsResource("import.sql")
 				.addAsManifestResource("hibernate5-quickstart-ds.xml").addAsManifestResource("MANIFEST.MF")
