@@ -14,3 +14,7 @@ It seems that when no named query is found (on first access) then transaction is
 This means that if there is no transaction - it will do nothing, but if it is called in transaction context - whole transaction is rolled back and error is returned.
 
 Some workaround in this example would be e.g. make MemberDAO as (value = TxType.NOT_SUPPORTED) i.e. detach it from existing transaction. 
+
+
+- check on liberty
+- verify IF transaction is properly handled in repository
