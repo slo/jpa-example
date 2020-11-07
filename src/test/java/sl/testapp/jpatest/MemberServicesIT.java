@@ -21,7 +21,7 @@ import sl.testapp.jpatest.member.MemberDAO;
 import sl.testapp.jpatest.member.MemberRepository;
 
 @RunWith(Arquillian.class)
-public class MemberServicesTest {
+public class MemberServicesIT {
 
 	@Deployment
 	public static WebArchive createWarDeployment() {
@@ -29,12 +29,13 @@ public class MemberServicesTest {
 		File[] files = Maven.resolver().loadPomFromFile("pom.xml").importDependencies(ScopeType.TEST, ScopeType.COMPILE)
 				.resolve().withTransitivity().asFile();
 
-		WebArchive war = ShrinkWrap.create(WebArchive.class, "test.war")
+		WebArchive war = ShrinkWrap.create(WebArchive.class, "arquillian-jpatest.war")
 				.addClasses(Member.class, MemberRepository.class, MemberDAO.class, RepositoryProducer.class)
-				.addAsWebInfResource("beans.xml").addAsResource("META-INF/persistence.xml").addAsResource("import.sql")
+				.addAsWebInfResource("beans.xml")
+				.addAsResource("META-INF/persistence.xml").addAsResource("import.sql")
 				.addAsManifestResource("hibernate5-quickstart-ds.xml").addAsManifestResource("MANIFEST.MF")
 				.addAsLibraries(files);
-		// System.out.println(war.toString(true));
+		System.out.println(war.toString(true));
 		return war;
 	}
 

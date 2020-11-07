@@ -6,16 +6,19 @@
         
    <persistence-unit name="primary">
    <!-- <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> -->
-   <jta-data-source>java:jboss/datasources/HibernateQuickstartDS</jta-data-source> 
+   <jta-data-source>jdbc/mydb</jta-data-source> 
+         <class>sl.testapp.jpatest.model.Member</class>
+      <exclude-unlisted-classes>false</exclude-unlisted-classes>
       <properties>
          <!-- Properties for Hibernate -->
          <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          <property name="hibernate.show_sql" value="true" />
          <property name="hibernate.format_sql" value="true" />
          <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" /> -->
-         <!-- <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->
+         <property name="javax.persistence.schema-generation.database.action" value="create"/>
+         <property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
+         <property name="javax.persistence.schema-generation.create-script-source" value="import.sql"/>
       </properties>
-      <class>sl.testapp.jpatest.model.Member</class>
-      <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
    </persistence-unit>
 </persistence>

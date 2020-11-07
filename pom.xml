@@ -7,7 +7,7 @@
 	<groupId>sl.testapp</groupId>
 	<artifactId>jpatest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>jpatest</name>
 	<url>http://maven.apache.org</url>
@@ -181,6 +181,14 @@
 				</dependency>
 			</dependencies>
 			<build>
+				<resources>
+				    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources-jboss</directory>
+                    </resource>
+                </resources>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -233,6 +241,14 @@
 				</dependency>
 			</dependencies>
 			<build>
+				<resources>
+				    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources-jboss</directory>
+                    </resource>
+                </resources>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -298,6 +314,14 @@
 
 			</dependencies>
 			<build>
+				<resources>
+				    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources-jboss</directory>
+                    </resource>
+                </resources>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -341,6 +365,11 @@
 
 		<profile>
 			<id>liberty-managed</id>
+			<properties>
+				<!-- Liberty configuration -->
+				<liberty.var.default.http.port>9080</liberty.var.default.http.port>
+				<liberty.var.default.https.port>9443</liberty.var.default.https.port>
+			</properties>
 			<dependencies>
 				<!-- Provided dependencies -->
 				<dependency>
@@ -408,19 +437,39 @@
 					<scope>test</scope>
 				</dependency>
 				<!-- end::shrinkwrap-api[] -->
+				<dependency>
+					<groupId>org.hibernate.validator</groupId>
+					<artifactId>hibernate-validator</artifactId>
+					<version>6.0.18.Final</version>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>jakarta.validation</groupId>
+					<artifactId>jakarta.validation-api</artifactId>
+					<version>2.0.2</version>
+					<scope>provided</scope>
+				</dependency>
 			</dependencies>
 
 			<build>
 				<finalName>${project.artifactId}</finalName>
+				<resources>
+				    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources-liberty</directory>
+                    </resource>
+                </resources>
 				<plugins>
-					<plugin>
+<!-- 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-war-plugin</artifactId>
 						<version>3.2.3</version>
 						<configuration>
 							<packagingExcludes>pom.xml</packagingExcludes>
 						</configuration>
-					</plugin>
+					</plugin> -->
 					<!-- tag::maven-failsafe-plugin[] -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>

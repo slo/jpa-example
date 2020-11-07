@@ -1,0 +1,47 @@
+<server description="new server">
+
+    <featureManager>
+        <feature>cdi-1.2</feature>
+
+        <!-- Enable the following features to run tests with Arquillian managed container -->
+        <!-- tag::localConnector[] -->
+        <feature>localConnector-1.0</feature>
+        <!-- end::localConnector[] -->
+        <!-- tag::Servlet[] -->
+        <feature>servlet-3.1</feature>
+        <!-- end::Servlet[] -->
+        <feature>jpa-2.1</feature> 
+
+    </featureManager>
+
+    <variable name="default.http.port" defaultValue="9080" />
+    <variable name="default.https.port" defaultValue="9443" />
+    
+
+    <httpEndpoint id="defaultHttpEndpoint" httpPort="${default.http.port}"
+        httpsPort="${default.https.port}" />
+    <webApplication location="jpatest.war"
+        context-root="/" />
+
+	<dataSource
+    id="mydb"
+    jndiName="jdbc/mydb"
+    type="javax.sql.ConnectionPoolDataSource">
+    <jdbcDriver
+        javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
+        javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
+        javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
+        libraryRef="SharedLibrary_H2"/>
+    <properties
+        URL="jdbc:h2:mem:hibernate-quickstart;TRACE_LEVEL_FILE=3;TRACE_LEVEL_SYSTEM_OUT=3;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1"
+        databaseName="MY_DB"
+        user="sa"
+        password="sa" />
+   </dataSource>
+
+<library id="SharedLibrary_H2">
+    <!-- fileset dir="${shared.resource.dir}/h2" id="Fileset_H2"-->
+    <file name="g:\\tools\\h2_driver\\h2-1.4.200.jar"/>
+    
+</library>
+</server>
