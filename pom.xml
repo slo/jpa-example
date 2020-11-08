@@ -81,7 +81,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+<!-- 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.3.1</version>
@@ -93,7 +93,7 @@
 						</manifest>
 					</archive>
 				</configuration>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 	<dependencyManagement>
@@ -182,14 +182,25 @@
 			</dependencies>
 			<build>
 				<resources>
-				    <resource>
-                        <directory>src/main/resources</directory>
-                    </resource>
-                    <resource>
-                        <directory>src/main/resources-jboss</directory>
-                    </resource>
-                </resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-jboss</directory>
+					</resource>
+				</resources>
 				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.22.0</version>
+						<configuration>
+							<systemPropertyVariables>
+								<arquillian.launch>jboss-remote</arquillian.launch>
+								<arquillian>jboss-remote</arquillian>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
@@ -242,14 +253,25 @@
 			</dependencies>
 			<build>
 				<resources>
-				    <resource>
-                        <directory>src/main/resources</directory>
-                    </resource>
-                    <resource>
-                        <directory>src/main/resources-jboss</directory>
-                    </resource>
-                </resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-jboss</directory>
+					</resource>
+				</resources>
 				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.22.0</version>
+						<configuration>
+							<systemPropertyVariables>
+								<arquillian.launch>jboss-managed</arquillian.launch>
+								<arquillian>jboss-managed</arquillian>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
@@ -315,14 +337,25 @@
 			</dependencies>
 			<build>
 				<resources>
-				    <resource>
-                        <directory>src/main/resources</directory>
-                    </resource>
-                    <resource>
-                        <directory>src/main/resources-jboss</directory>
-                    </resource>
-                </resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-jboss</directory>
+					</resource>
+				</resources>
 				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.22.0</version>
+						<configuration>
+							<systemPropertyVariables>
+								<arquillian.launch>wildfly-managed</arquillian.launch>
+								<arquillian>wildfly-managed</arquillian>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
@@ -454,13 +487,13 @@
 			<build>
 				<finalName>${project.artifactId}</finalName>
 				<resources>
-				    <resource>
-                        <directory>src/main/resources</directory>
-                    </resource>
-                    <resource>
-                        <directory>src/main/resources-liberty</directory>
-                    </resource>
-                </resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources-liberty</directory>
+					</resource>
+				</resources>
 				<plugins>
 <!-- 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
