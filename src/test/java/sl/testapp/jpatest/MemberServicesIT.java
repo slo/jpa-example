@@ -18,7 +18,6 @@ import org.junit.runner.RunWith;
 
 import sl.testapp.jpatest.member.Member;
 import sl.testapp.jpatest.member.MemberDAO;
-import sl.testapp.jpatest.member.MemberRepository;
 
 @RunWith(Arquillian.class)
 public class MemberServicesIT {
@@ -30,7 +29,7 @@ public class MemberServicesIT {
 				.resolve().withTransitivity().asFile();
 
 		WebArchive war = ShrinkWrap.create(WebArchive.class, "arquillian-jpatest.war")
-				.addClasses(Member.class, MemberRepository.class, MemberDAO.class, RepositoryProducer.class)
+				.addPackages(true, RepositoryProducer.class.getPackage())
 				.addAsWebInfResource("beans.xml")
 				.addAsResource("META-INF/persistence.xml").addAsResource("import.sql")
 				.addAsManifestResource("hibernate5-quickstart-ds.xml").addAsManifestResource("MANIFEST.MF")
