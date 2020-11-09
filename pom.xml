@@ -466,6 +466,13 @@
 						<groupId>io.openliberty.tools</groupId>
 						<artifactId>liberty-maven-plugin</artifactId>
 						<version>3.2.3</version>
+						<configuration>
+							<arquillianProperties>
+								<javaVmArguments>-Xmx512m -XX:MaxPermSize=128m
+									-Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n</javaVmArguments>
+							</arquillianProperties>
+
+						</configuration>
 					</plugin>
 					<!-- end::liberty-maven-plugin[] -->
 				</plugins>
