@@ -65,19 +65,10 @@
 					</execution>
 				</executions>
 			</plugin>
-<!-- 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.3.1</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib</classpathPrefix>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> 
+				<version>3.3.1</version> <configuration> <archive> <manifest> <addClasspath>true</addClasspath> 
+				<classpathPrefix>lib</classpathPrefix> </manifest> </archive> </configuration> 
+				</plugin> -->
 		</plugins>
 	</build>
 	<dependencyManagement>
@@ -446,14 +437,9 @@
 					</resource>
 				</resources>
 				<plugins>
-<!-- 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-war-plugin</artifactId>
-						<version>3.2.3</version>
-						<configuration>
-							<packagingExcludes>pom.xml</packagingExcludes>
-						</configuration>
-					</plugin> -->
+					<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> 
+						<version>3.2.3</version> <configuration> <packagingExcludes>pom.xml</packagingExcludes> 
+						</configuration> </plugin> -->
 					<!-- tag::maven-failsafe-plugin[] -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
