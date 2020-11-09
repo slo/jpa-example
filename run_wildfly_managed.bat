@@ -1,0 +1,1 @@
+mvn -Pwildfly-managed clean install
