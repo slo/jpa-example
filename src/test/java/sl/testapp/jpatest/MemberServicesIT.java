@@ -44,8 +44,9 @@ public class MemberServicesIT {
 	@Inject
 	MemberDAO memberDao;
 
+	// this test is designed to fail if problem is worked around
 	@Test
-	@Ignore
+	// @Ignore
 	public void should_find_by_email() {
 		try {
 			List<Member> result = memberDao.findByEmail("johndoe@example.com");
@@ -57,11 +58,12 @@ public class MemberServicesIT {
 	}
 
 	@Test
-	public void should_find_3() {
+	@Ignore
+	public void verifyThatExceptionThrownPerformsRollback() {
 
-		List<Member> result1;
 		try {
-			result1 = memberDao.performManyOperationsAndRollback("asdfasdf@example.com");
+			memberDao.performManyOperationsAndOptionallyThrowExc("asdfasdf@example.com", true);
+			fail();
 		} catch (Exception e) {
 			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
 			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
@@ -70,9 +72,34 @@ public class MemberServicesIT {
 			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
 			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
 			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
+			if (!e.getMessage().contains("maj mesydz")) {
+				fail();
+			}
 		}
 		List<Member> result2 = memberDao.findAll();
 		assertEquals(3, result2.size());
+	}
+
+	@Test
+	@Ignore
+	public void verifyThatSavingChangesDBState() {
+
+		try {
+			List<Member> result1 = memberDao.performManyOperationsAndOptionallyThrowExc("asdfasdf@example.com", false);
+			assertEquals(4, result1.size());
+		} catch (Exception e) {
+			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
+			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
+			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
+			e.printStackTrace();
+			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
+			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
+			System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBb");
+			fail();
+		}
+		List<Member> result2 = memberDao.findAll();
+		assertEquals(4, result2.size());
+
 	}
 
 }

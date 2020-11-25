@@ -26,7 +26,7 @@ public class MemberDAO {
 		return memberRepository.findAll();
 	}
 
-	public List<Member> performManyOperationsAndRollback(String email) throws Exception {
+	public List<Member> performManyOperationsAndOptionallyThrowExc(String email, boolean throwException) throws Exception {
 
 		Member m = new Member();
 		m.setId(4L);
@@ -36,10 +36,10 @@ public class MemberDAO {
 		m.setPhoneNumber("555678678");
 		memberRepository.save(m);
 		// em.flush();
-		boolean val = true;
-		if (val) {
+		if (throwException) {
 			throw new Exception("maj mesydz");
 		}
 		return memberRepository.findAll();
 	}
+
 }
